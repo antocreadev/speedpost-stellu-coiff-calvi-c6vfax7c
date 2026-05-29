@@ -1,693 +1,471 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Stellu Coiff : Salon de coiffure & bien-être à Calvi (Balagne)</title>
-<meta name="description" content="Stellu Coiff, salon de coiffure et bien-être au coeur de Calvi. Couleur, balayage, lissage brésilien et japonais, kératine, coupe. Note 4,7/5. Appelez le 06 73 53 99 92."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant:ital,wght@1,500;1,600&family=Jost:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="./tailwind.css"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Stellu Coiff · Salon de coiffure & bien-être à Calvi</title>
+<meta name="description" content="Stellu Coiff, salon de coiffure et bien-être au cœur de Calvi. Coupe, couleur, balayage, lissages brésilien et japonais, kératine, réflexologie. Note 4,7/5 sur Google. Prenez rendez-vous au 06 73 53 99 92." />
+<meta name="theme-color" content="#16302E" />
+<meta property="og:title" content="Stellu Coiff · Salon de coiffure & bien-être à Calvi" />
+<meta property="og:description" content="Salon de coiffure & bien-être au cœur de Calvi. Coupe, couleur, balayage, lissages experts, réflexologie. 4,7/5 sur Google." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="./assets/images/hero-salon.avif" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./tailwind.css" />
 <style>
   :root{
-    --bg:#F6F4F0; --ink:#1A1E2E; --ink-2:#6E6F7C;
-    --accent:#B08A4F; --accent-lt:#E8C98A; --line:#E2DDD3;
+    --bg:#F7F5F1; --surface:#FFFFFF; --ink:#16302E; --ink-2:#5E6F6B;
+    --accent:#1F6E62; --gold:#B79155; --line:#E4E0D8;
   }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  html,body{background:var(--bg);color:var(--ink);}
-  body{font-family:'Jost',system-ui,sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;}
-  .font-display{font-family:'Marcellus',serif;}
-  .font-accent{font-family:'Cormorant',serif;font-style:italic;}
-  .font-mono{font-family:'Space Mono',monospace;}
-  .tracking-cosmic{letter-spacing:.14em}
-  .tracking-star{letter-spacing:.18em}
-  .tracking-mono{letter-spacing:.12em}
+  *{ -webkit-font-smoothing:antialiased; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--ink); font-family:'Jost',system-ui,sans-serif; }
+  .font-display{ font-family:'Cormorant Garamond',Georgia,serif; }
 
-  /* reveals robustes */
-  .js-ready [data-reveal]{opacity:0;transform:translateY(16px);animation:autoreveal .5s ease-out .15s forwards;}
-  @keyframes autoreveal{to{opacity:1;transform:translateY(0)}}
-
-  /* scintillement étoiles */
-  @keyframes twinkle{
-    0%{opacity:.35;transform:scale(.85)}
-    100%{opacity:1;transform:scale(1.12)}
+  .eyebrow{
+    font-family:'Jost',sans-serif; font-weight:500; font-size:.74rem;
+    letter-spacing:.28em; text-transform:uppercase; color:var(--ink-2);
   }
-  .twinkle{animation:twinkle 3s ease-in-out infinite alternate;}
+  .eyebrow .star{ color:var(--gold); margin-right:.5em; }
 
-  /* glow gravé sur fonds nuit */
-  .glow{text-shadow:0 0 22px rgba(176,138,79,.28), 0 0 4px rgba(232,201,138,.18);}
+  .hair-gold{ display:block; width:56px; height:2px; background:var(--gold); border-radius:2px; }
 
-  /* étoile filante */
-  @keyframes shoot{
-    0%{transform:translate(-40px,-30px) rotate(35deg);opacity:0}
-    18%{opacity:1}
-    100%{transform:translate(140px,110px) rotate(35deg);opacity:0}
+  .scrim{
+    position:absolute; inset:0; pointer-events:none; z-index:1;
+    background:
+      radial-gradient(60% 45% at 30% 70%, rgba(10,24,22,.42) 0%, transparent 70%),
+      linear-gradient(180deg, rgba(10,24,22,.55) 0%, rgba(10,24,22,.15) 24%, transparent 46%, transparent 58%, rgba(10,24,22,.4) 84%, rgba(10,24,22,.72) 100%);
   }
-  .shoot{animation:shoot 2.4s ease-out infinite;}
+  .hero-img{ filter:brightness(.92) saturate(1.04) contrast(1.03); }
+  .on-photo{ color:#fff; text-shadow:0 1px 2px rgba(0,0,0,.45), 0 2px 18px rgba(0,0,0,.3); }
+  .on-photo-eyebrow{ color:#F2EAD8; }
+  .on-photo .star{ color:#D8B873; }
 
-  /* indicateur scroll vertical filant */
-  @keyframes fallstar{
-    0%{transform:translateY(-6px);opacity:0}
-    35%{opacity:1}
-    100%{transform:translateY(22px);opacity:0}
+  .chip-photo{
+    background:rgba(22,48,46,.42); backdrop-filter:blur(4px);
+    color:#fff; border-radius:999px; padding:.55rem 1.1rem;
+    font-size:.82rem; letter-spacing:.02em;
   }
-  .fallstar{animation:fallstar 2.1s ease-in-out infinite;}
 
-  /* halo médaillon */
-  .halo{box-shadow:0 0 0 1px var(--line), 0 18px 50px -22px rgba(26,30,46,.45), 0 0 0 8px rgba(176,138,79,.06);transition:box-shadow .25s ease, transform .25s ease;}
-  .halo:hover{transform:scale(1.035);box-shadow:0 0 0 1px var(--accent), 0 24px 60px -20px rgba(26,30,46,.5), 0 0 0 10px rgba(176,138,79,.14);}
-  .halo-dark{box-shadow:0 0 0 1px rgba(176,138,79,.25), 0 22px 60px -22px rgba(0,0,0,.65), 0 0 0 9px rgba(176,138,79,.07);transition:box-shadow .25s ease, transform .25s ease;}
-  .halo-dark:hover{transform:scale(1.035);box-shadow:0 0 0 1px var(--accent-lt), 0 26px 70px -18px rgba(0,0,0,.7), 0 0 0 11px rgba(232,201,138,.16);}
+  .btn-accent{
+    background:var(--accent); color:#fff; border-radius:4px;
+    padding:.85rem 1.6rem; font-weight:500; letter-spacing:.04em;
+    display:inline-flex; align-items:center; gap:.55rem;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-accent:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(31,110,98,.28); background:#1a5e54; }
+  .btn-ghost{
+    color:#fff; border-bottom:1px solid rgba(255,255,255,.6);
+    padding-bottom:2px; font-weight:500; letter-spacing:.04em; transition:border-color .18s;
+  }
+  .btn-ghost:hover{ border-color:#fff; }
 
-  /* étoile-prestation (constellation) */
-  .star-node{transition:transform .25s ease, filter .25s ease;}
-  .star-node:hover,.star-node:focus-visible{transform:scale(1.07);}
-  .star-dot{transition:box-shadow .3s ease, transform .3s ease;}
-  .star-node:hover .star-dot,.star-node:focus-visible .star-dot{box-shadow:0 0 0 4px rgba(232,201,138,.18), 0 0 28px 4px rgba(232,201,138,.4);}
+  .nav-wrap{ transition:background .35s ease, box-shadow .35s ease, border-color .35s ease; border-bottom:1px solid transparent; }
+  .nav-solid{ background:rgba(247,245,241,.92); backdrop-filter:blur(10px); border-bottom-color:var(--line); box-shadow:0 1px 0 rgba(0,0,0,.02); }
+  .nav-link{ color:#fff; font-size:.92rem; letter-spacing:.04em; transition:color .2s, opacity .2s; opacity:.92; }
+  .nav-link:hover{ opacity:1; }
+  .nav-solid .nav-link{ color:var(--ink); text-shadow:none; }
+  .nav-link-shadow{ text-shadow:0 1px 6px rgba(0,0,0,.4); }
+  .nav-solid .nav-link-shadow{ text-shadow:none; }
+  .wordmark{ color:#fff; text-shadow:0 1px 6px rgba(0,0,0,.4); }
+  .nav-solid .wordmark{ color:var(--ink); text-shadow:none; }
 
-  /* tracé liens constellation : one-shot via classe .lit */
-  .clink{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s ease-out;}
-  .lit .clink{stroke-dashoffset:0;}
+  .pcard{
+    background:var(--surface); border:1px solid var(--line); border-radius:4px;
+    box-shadow:0 1px 2px rgba(22,48,46,.03);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .pcard:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(22,48,46,.08); border-color:var(--accent); }
+  .pcard-dark{ background:var(--ink); border-color:var(--ink); color:#EAF0EE; }
+  .pcard-dark:hover{ border-color:var(--gold); }
+  .pbullet{ color:var(--gold); margin-right:.55em; }
 
-  /* CTA */
-  .btn-accent{background:var(--accent);color:var(--ink);transition:transform .2s ease, box-shadow .2s ease, background .2s ease;}
-  .btn-accent:hover{transform:translateY(-2px);box-shadow:0 16px 34px -14px rgba(176,138,79,.7);background:#bd9659;}
-  .btn-ghost-lt{border:1px solid rgba(232,201,138,.5);color:var(--accent-lt);transition:background .2s ease, transform .2s ease;}
-  .btn-ghost-lt:hover{background:rgba(232,201,138,.1);transform:translateY(-2px);}
+  .gitem{ position:relative; overflow:hidden; border:1px solid var(--line); border-radius:4px; background:var(--surface); }
+  .gitem img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .5s cubic-bezier(.2,.7,.2,1); }
+  .gitem .gveil{ position:absolute; inset:0; background:rgba(22,48,46,.18); opacity:0; transition:opacity .25s ease; pointer-events:none; }
+  .gitem .gcap{
+    position:absolute; left:0; right:0; bottom:0; padding:.9rem 1rem;
+    color:#fff; font-size:.95rem; letter-spacing:.05em; font-weight:500;
+    background:linear-gradient(0deg, rgba(10,24,22,.62) 0%, transparent 100%);
+    transition:opacity .25s ease; opacity:1; text-shadow:0 1px 3px rgba(0,0,0,.4);
+  }
+  @media (min-width:768px){
+    .gitem .gcap{ opacity:0; }
+    .gitem:hover img{ transform:scale(1.03); }
+    .gitem:hover .gveil{ opacity:1; }
+    .gitem:hover .gcap{ opacity:1; }
+  }
 
-  /* dock conversion mobile */
-  #dock{transition:transform .35s cubic-bezier(.2,.7,.2,1);}
+  .quote-mark{ font-family:'Cormorant Garamond',serif; color:var(--gold); font-size:4rem; line-height:.6; }
 
-  /* curseur étoile */
-  #star-cursor{position:fixed;top:0;left:0;width:14px;height:14px;pointer-events:none;z-index:90;mix-blend-mode:normal;opacity:0;transition:opacity .3s ease;will-change:transform;}
+  .hrow{ display:flex; justify-content:space-between; align-items:baseline; padding:.55rem 0; border-bottom:1px solid var(--line); }
+  .hrow:last-child{ border-bottom:none; }
+  .hrow.today{ color:var(--ink); font-weight:500; }
+  .hrow.today .hday{ color:var(--accent); }
+  .hday{ color:var(--ink-2); letter-spacing:.04em; }
+  .htime{ color:var(--ink-2); }
+  .badge-open{ display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; letter-spacing:.06em; padding:.3rem .7rem; border-radius:999px; }
+  .badge-open.is-open{ background:rgba(31,110,98,.12); color:var(--accent); }
+  .badge-open.is-closed{ background:rgba(94,111,107,.12); color:var(--ink-2); }
+  .dot{ width:7px; height:7px; border-radius:50%; background:currentColor; }
 
-  /* texture étoilée subtile sur fonds nuit */
-  .nightfield{position:relative;}
+  .dock{ box-shadow:0 -1px 0 var(--line), 0 -8px 24px rgba(22,48,46,.06); }
 
-  @media (prefers-reduced-motion: reduce){
-    .twinkle,.shoot,.fallstar{animation:none !important;opacity:1 !important;transform:none !important;}
-    .clink{stroke-dashoffset:0 !important;transition:none;}
-    .js-ready [data-reveal]{animation:none !important;opacity:1 !important;transform:none !important;}
-    html{scroll-behavior:auto}
+  [data-reveal]{ opacity:1; transform:none; }
+  .js-ready [data-reveal]{ opacity:0; transform:translateY(16px); animation:autoreveal .6s cubic-bezier(.2,.7,.2,1) .2s forwards; }
+  @keyframes autoreveal{ to{ opacity:1; transform:none; } }
+  @media (prefers-reduced-motion:reduce){
+    .js-ready [data-reveal]{ opacity:1; transform:none; animation:none; }
+    html{ scroll-behavior:auto; }
   }
 </style>
 </head>
 <body class="antialiased">
 
-<div id="star-cursor" aria-hidden="true">
-  <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 0l2.2 8.4L22 12l-7.8 1.8L12 24l-2.2-10.2L2 12l7.8-1.4z" fill="#B08A4F"/></svg>
-</div>
-
-<!-- ============ NAV CÉLESTE ============ -->
-<header class="fixed top-0 inset-x-0 z-50">
-  <nav class="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2 group" aria-label="Stellu Coiff, accueil">
-      <span class="twinkle text-accent-lt text-lg leading-none" aria-hidden="true">&#10022;</span>
-      <span class="font-display tracking-star text-base sm:text-lg" id="nav-word">STELLU</span>
+<!-- NAV -->
+<header id="nav" class="nav-wrap fixed top-0 inset-x-0 z-50">
+  <nav class="max-w-6xl mx-auto px-5 sm:px-7 h-16 flex items-center justify-between">
+    <a href="#top" class="wordmark font-display text-2xl sm:text-[1.7rem]" style="font-weight:600;">
+      <span style="color:var(--gold);">✦</span> Stellu Coiff
     </a>
-    <a href="tel:+33673539992" class="btn-accent hidden sm:inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-mono text-xs tracking-mono uppercase">
-      <span aria-hidden="true">&#10022;</span> Appeler : 06 73 53 99 92
+    <div class="hidden md:flex items-center gap-7">
+      <a href="#salon" class="nav-link nav-link-shadow">Le salon</a>
+      <a href="#prestations" class="nav-link nav-link-shadow">Prestations</a>
+      <a href="#galerie" class="nav-link nav-link-shadow">Galerie</a>
+      <a href="#avis" class="nav-link nav-link-shadow">Avis</a>
+      <a href="#infos" class="nav-link nav-link-shadow">Infos</a>
+      <a href="#rdv" class="btn-accent text-sm" style="padding:.6rem 1.2rem;">Prendre RDV</a>
+    </div>
+    <a href="tel:+33673539992" class="md:hidden nav-link nav-link-shadow inline-flex items-center gap-2" aria-label="Appeler le salon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+      Appeler
     </a>
   </nav>
 </header>
 
-<main id="top">
-
-<!-- ============ 1. HERO : L'ÉTOILE MÈRE ============ -->
-<section class="relative min-h-[100svh] flex flex-col items-center justify-center text-center overflow-hidden nightfield" style="background:var(--ink)">
-  <!-- ciel étoilé -->
-  <div id="sky" class="absolute inset-0" aria-hidden="true"></div>
-  <!-- voile radial -->
-  <div class="absolute inset-0" aria-hidden="true" style="background:radial-gradient(60% 50% at 50% 42%, rgba(176,138,79,.12) 0%, transparent 70%)"></div>
-  <!-- étoile filante décor -->
-  <div class="absolute top-[18%] left-[14%]" aria-hidden="true">
-    <div class="shoot w-24 h-px" style="background:linear-gradient(90deg,transparent,var(--accent-lt))"></div>
-  </div>
-
-  <div class="relative z-10 px-5 max-w-3xl mx-auto pt-20 pb-16">
-    <p data-reveal class="font-mono text-[.62rem] sm:text-xs tracking-mono uppercase mb-7" style="color:var(--accent-lt)">
-      Salon de coiffure &amp; bien-être · Calvi, Balagne
-    </p>
-
-    <h1 class="font-display text-accent-lt glow leading-[.9]" style="font-size:clamp(3.2rem,13vw,9rem);letter-spacing:.18em">
-      <span data-reveal class="block">STELLU</span>
-      <span data-reveal class="block font-mono tracking-[.42em] text-[#cfd0d8] mt-3" style="font-size:clamp(.7rem,2.4vw,1.05rem);font-weight:400">C O I F F</span>
-    </h1>
-
-    <p data-reveal class="font-accent text-[#e9e7ef] mt-8" style="font-size:clamp(2rem,5vw,3.4rem);line-height:1.1">
-      Votre <span style="color:var(--accent-lt)">éclat</span> a son étoile.
-    </p>
-
-    <div data-reveal class="mt-9 flex flex-wrap items-center justify-center gap-3">
-      <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 font-mono text-xs tracking-mono" style="background:rgba(176,138,79,.14);color:var(--accent-lt);border:1px solid rgba(232,201,138,.3)">
-        <span aria-hidden="true">&#9733;</span> 4,7 / 5 · 14 avis
+<!-- HERO -->
+<section id="top" class="relative min-h-[92vh] flex items-end overflow-hidden">
+  <img src="./assets/images/hero-salon.avif" alt="Stellu Coiff, salon de coiffure à Calvi" class="hero-img absolute inset-0 w-full h-full object-cover" loading="eager" fetchpriority="high" id="hero-image" />
+  <div class="scrim"></div>
+  <div class="relative z-10 w-full max-w-6xl mx-auto px-5 sm:px-7 pb-12 sm:pb-16">
+    <p class="eyebrow on-photo on-photo-eyebrow mb-4" data-reveal><span class="star">✦</span>Calvi · Balagne</p>
+    <h1 class="on-photo font-display leading-[1.02]" style="font-weight:500; letter-spacing:-0.01em; font-size:clamp(2.6rem,8vw,5.2rem);" data-reveal>Stellu Coiff</h1>
+    <p class="on-photo mt-3 text-lg sm:text-xl max-w-xl" style="opacity:.96;" data-reveal>Salon de coiffure &amp; bien-être au cœur de Calvi</p>
+    <div class="flex flex-wrap items-center gap-5 mt-7" data-reveal>
+      <a href="tel:+33673539992" class="btn-accent">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        Prendre rendez-vous
+      </a>
+      <a href="#salon" class="on-photo btn-ghost">Découvrir le salon</a>
+    </div>
+    <div class="mt-8" data-reveal>
+      <span class="chip-photo inline-flex items-center gap-2">
+        <span style="color:#D8B873; letter-spacing:.05em;">★ ★ ★ ★ ★</span>
+        <span>4,7 sur Google · 14 avis</span>
       </span>
     </div>
+  </div>
+</section>
 
-    <div data-reveal class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
-      <a href="tel:+33673539992" class="btn-accent w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-mono text-xs tracking-mono uppercase">
-        <span aria-hidden="true">&#10022;</span> Appeler : 06 73 53 99 92
+<!-- BANDEAU CONFIANCE -->
+<section class="border-b" style="border-color:var(--line); background:var(--bg);">
+  <div class="max-w-6xl mx-auto px-5 sm:px-7 py-5 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center">
+    <span class="eyebrow">Coiffure mixte</span>
+    <span style="color:var(--gold);">✦</span>
+    <span class="eyebrow">Coloriste &amp; balayage</span>
+    <span style="color:var(--gold);">✦</span>
+    <span class="eyebrow">Lissages experts</span>
+    <span style="color:var(--gold);">✦</span>
+    <span class="eyebrow">Réflexologie &amp; soins</span>
+  </div>
+</section>
+
+<!-- LE SALON -->
+<section id="salon" class="max-w-6xl mx-auto px-5 sm:px-7 py-20 sm:py-28">
+  <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+    <div class="relative" data-reveal>
+      <div class="absolute -top-3 -left-3 w-16 h-16 border-t border-l" style="border-color:var(--gold); border-radius:2px;" aria-hidden="true"></div>
+      <img src="./assets/images/salon-interieur.avif" alt="Ambiance zen du salon Stellu Coiff" class="w-full h-[340px] sm:h-[460px] object-cover" style="border:1px solid var(--line); border-radius:2px;" loading="lazy" />
+    </div>
+    <div data-reveal>
+      <p class="eyebrow mb-4"><span class="star">✦</span>Le salon</p>
+      <h2 class="font-display" style="font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem); line-height:1.08;">Une atmosphère zen, une équipe experte</h2>
+      <span class="hair-gold mt-5 mb-6"></span>
+      <p class="text-[1.05rem] leading-[1.7]" style="color:var(--ink-2);">
+        Estelle, Anthony, Céline et Marion vous accueillent dans une atmosphère zen et chaleureuse, au cœur de Calvi.
+      </p>
+      <p class="text-[1.05rem] leading-[1.7] mt-4" style="color:var(--ink-2);">
+        Coupe, couleur, balayage, lissages brésilien et japonais, kératine : une équipe d'experts qui prend soin de vos cheveux comme de votre bien-être.
+      </p>
+      <p class="font-display italic mt-6 text-xl" style="color:var(--ink); font-weight:500;">Estelle · Anthony · Céline · Marion</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRESTATIONS -->
+<section id="prestations" class="py-20 sm:py-28" style="background:#FBFAF7; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="max-w-6xl mx-auto px-5 sm:px-7">
+    <div class="text-center mb-12" data-reveal>
+      <p class="eyebrow mb-3"><span class="star">✦</span>Nos prestations</p>
+      <h2 class="font-display" style="font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem);">Ce que nous réalisons</h2>
+      <span class="hair-gold mx-auto mt-5"></span>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <article class="pcard p-7" data-reveal>
+        <h3 class="font-display mb-4" style="font-weight:600; font-size:1.35rem;">Coiffure</h3>
+        <ul class="space-y-2 text-[1rem]" style="color:var(--ink-2);">
+          <li><span class="pbullet">✦</span>Coupe femme</li>
+          <li><span class="pbullet">✦</span>Coupe homme</li>
+          <li><span class="pbullet">✦</span>Coupe enfant</li>
+          <li><span class="pbullet">✦</span>Brushing</li>
+        </ul>
+      </article>
+      <article class="pcard p-7" data-reveal>
+        <h3 class="font-display mb-4" style="font-weight:600; font-size:1.35rem;">Couleur</h3>
+        <ul class="space-y-2 text-[1rem]" style="color:var(--ink-2);">
+          <li><span class="pbullet">✦</span>Balayage</li>
+          <li><span class="pbullet">✦</span>Tie &amp; dye</li>
+          <li><span class="pbullet">✦</span>Coloration</li>
+        </ul>
+      </article>
+      <article class="pcard p-7" data-reveal>
+        <h3 class="font-display mb-4" style="font-weight:600; font-size:1.35rem;">Soins &amp; lissages</h3>
+        <ul class="space-y-2 text-[1rem]" style="color:var(--ink-2);">
+          <li><span class="pbullet">✦</span>Lissage brésilien</li>
+          <li><span class="pbullet">✦</span>Lissage japonais</li>
+          <li><span class="pbullet">✦</span>Kératine</li>
+          <li><span class="pbullet">✦</span>Permanente</li>
+        </ul>
+      </article>
+      <article class="pcard pcard-dark p-7" data-reveal>
+        <p class="eyebrow mb-2" style="color:#D8B873;">Bien-être</p>
+        <h3 class="font-display mb-3" style="font-weight:600; font-size:1.35rem; color:#fff;">Un moment pour soi</h3>
+        <p class="text-[.98rem] leading-[1.6]" style="color:#C7D3D0;">Au-delà de la coiffure : réflexologie, soins des mains et des pieds. Un vrai moment de détente.</p>
+        <ul class="space-y-2 text-[1rem] mt-4" style="color:#EAF0EE;">
+          <li><span class="pbullet">✦</span>Réflexologie</li>
+          <li><span class="pbullet">✦</span>Soins mains &amp; pieds</li>
+        </ul>
+      </article>
+    </div>
+    <div class="text-center mt-11" data-reveal>
+      <p class="text-[1rem] mb-5" style="color:var(--ink-2);">Tarifs sur demande, devis gratuit en salon.</p>
+      <a href="tel:+33673539992" class="btn-accent">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        Appeler pour un rendez-vous
       </a>
-      <a href="#prestations" class="btn-ghost-lt w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 font-mono text-xs tracking-mono uppercase">
-        Découvrir nos prestations
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" class="max-w-6xl mx-auto px-5 sm:px-7 py-20 sm:py-28">
+  <div class="text-center mb-12" data-reveal>
+    <p class="eyebrow mb-3"><span class="star">✦</span>Galerie</p>
+    <h2 class="font-display" style="font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem);">Le travail en images</h2>
+    <span class="hair-gold mx-auto mt-5"></span>
+  </div>
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] sm:auto-rows-[220px]">
+    <figure class="gitem row-span-2" data-reveal>
+      <img src="./assets/images/couleur.avif" alt="Coloration et balayage" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Coloration &amp; balayage</figcaption>
+    </figure>
+    <figure class="gitem" data-reveal>
+      <img src="./assets/images/coupe.avif" alt="Coupe réalisée au salon" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Coupe</figcaption>
+    </figure>
+    <figure class="gitem row-span-2" data-reveal>
+      <img src="./assets/images/femme-cheveux.avif" alt="Résultat brillance et mouvement" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Brillance &amp; mouvement</figcaption>
+    </figure>
+    <figure class="gitem" data-reveal>
+      <img src="./assets/images/brushing.avif" alt="Brushing et mise en forme" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Brushing</figcaption>
+    </figure>
+    <figure class="gitem" data-reveal>
+      <img src="./assets/images/soin.avif" alt="Soin et lissage des cheveux" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Soins &amp; lissages</figcaption>
+    </figure>
+    <figure class="gitem" data-reveal>
+      <img src="./assets/images/detail-produits.avif" alt="Produits et outils du salon" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Produits &amp; matériel</figcaption>
+    </figure>
+    <figure class="gitem" data-reveal>
+      <img src="./assets/images/ciseaux.avif" alt="Ciseaux et outils de coiffure" loading="lazy" />
+      <span class="gveil"></span><figcaption class="gcap">Le geste expert</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section id="avis" class="py-20 sm:py-28" style="background:#FBFAF7; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="max-w-5xl mx-auto px-5 sm:px-7 text-center">
+    <p class="eyebrow mb-3" data-reveal><span class="star">✦</span>Ils nous font confiance</p>
+    <h2 class="font-display" style="font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem);" data-reveal>4,7/5 sur Google</h2>
+    <p class="mt-2 text-lg" style="color:#D8B873; letter-spacing:.12em;" data-reveal>★ ★ ★ ★ ★</p>
+    <p class="text-sm mt-1 mb-12" style="color:var(--ink-2); letter-spacing:.05em;" data-reveal>14 avis · 13 notes cinq étoiles</p>
+    <div class="grid md:grid-cols-3 gap-7">
+      <blockquote class="pcard p-7 text-left" data-reveal>
+        <span class="quote-mark">“</span>
+        <p class="font-display italic mt-2 text-xl leading-[1.4]" style="font-weight:500;">Une équipe à l'écoute et un résultat impeccable. Mon balayage est exactement ce que je voulais.</p>
+        <footer class="mt-5 eyebrow" style="letter-spacing:.16em;">Cliente Google</footer>
+      </blockquote>
+      <blockquote class="pcard p-7 text-left" data-reveal>
+        <span class="quote-mark">“</span>
+        <p class="font-display italic mt-2 text-xl leading-[1.4]" style="font-weight:500;">Atmosphère zen et accueil chaleureux. On ressort détendue et coiffée à la perfection.</p>
+        <footer class="mt-5 eyebrow" style="letter-spacing:.16em;">Cliente Google</footer>
+      </blockquote>
+      <blockquote class="pcard p-7 text-left" data-reveal>
+        <span class="quote-mark">“</span>
+        <p class="font-display italic mt-2 text-xl leading-[1.4]" style="font-weight:500;">Des vrais pros du lissage. Mes cheveux n'ont jamais été aussi beaux. Je recommande sans hésiter.</p>
+        <footer class="mt-5 eyebrow" style="letter-spacing:.16em;">Client Google</footer>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- INFOS + MAP -->
+<section id="infos" class="max-w-6xl mx-auto px-5 sm:px-7 py-20 sm:py-28">
+  <div class="text-center mb-12" data-reveal>
+    <p class="eyebrow mb-3"><span class="star">✦</span>Nous trouver</p>
+    <h2 class="font-display" style="font-weight:500; font-size:clamp(1.9rem,4.2vw,3rem);">Venez nous voir à Calvi</h2>
+    <span class="hair-gold mx-auto mt-5"></span>
+  </div>
+  <div id="rdv" class="grid md:grid-cols-[1.1fr_1fr] gap-10 md:gap-12 items-start">
+    <div data-reveal>
+      <div class="flex items-start gap-3 mb-6">
+        <svg width="20" height="20" class="mt-1 shrink-0" style="color:var(--accent);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <p class="font-display text-xl" style="font-weight:600;">Chez Nuance · Centre commercial Auchan</p>
+          <p class="text-[1rem] mt-1" style="color:var(--ink-2);">Route de Santore, Bâtiment C<br/>20260 Calvi · Balagne, Haute-Corse</p>
+          <p class="text-[.92rem] mt-2" style="color:var(--ink-2);">Repère : à côté de la parfumerie Nuance, dans la galerie Auchan.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between mb-3 pt-2">
+        <h3 class="font-display text-xl" style="font-weight:600;">Horaires</h3>
+        <span id="open-badge" class="badge-open is-closed"><span class="dot"></span><span id="open-text">Fermé</span></span>
+      </div>
+      <div class="mb-7" style="border:1px solid var(--line); border-radius:4px; padding:.4rem 1.1rem; background:var(--surface);">
+        <div class="hrow" data-day="1"><span class="hday">Lundi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="2"><span class="hday">Mardi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="3"><span class="hday">Mercredi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="4"><span class="hday">Jeudi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="5"><span class="hday">Vendredi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="6"><span class="hday">Samedi</span><span class="htime">9h00 – 19h00</span></div>
+        <div class="hrow" data-day="0"><span class="hday">Dimanche</span><span class="htime">Fermé</span></div>
+      </div>
+
+      <a href="tel:+33673539992" class="btn-accent w-full justify-center sm:w-auto">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        Appeler le salon
       </a>
+      <p class="mt-3 text-[1.15rem]"><a href="tel:+33673539992" style="color:var(--accent); font-weight:500;">06 73 53 99 92</a></p>
     </div>
-  </div>
-
-  <!-- indicateur scroll : étoile filante verticale -->
-  <div class="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" aria-hidden="true">
-    <div class="relative h-8 w-px" style="background:linear-gradient(var(--accent-lt),transparent)">
-      <span class="fallstar absolute -left-[5px] top-0 text-[.7rem]" style="color:var(--accent-lt)">&#10022;</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 2. BASCULE JOUR : MANIFESTE ============ -->
-<section class="relative py-24 sm:py-32 px-5" style="background:var(--bg)">
-  <div class="max-w-3xl mx-auto text-center">
-    <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-6" style="color:var(--accent)">&#10022; Stellu, l'étoile en corse</p>
-    <h2 data-reveal class="font-display leading-[1.18]" style="font-size:clamp(1.7rem,4.4vw,2.8rem)">
-      Ici, à Calvi, une équipe fidèle révèle la
-      <span class="font-accent" style="color:var(--accent)"> lumière </span>
-      de vos cheveux.
-    </h2>
-    <p data-reveal class="mt-7 text-lg font-light" style="color:var(--ink-2)">
-      Une atmosphère zen et chaleureuse, au coeur de la Balagne. La couleur juste, le geste expert, le soin qui fait du bien. On prend le temps de vous écouter, vous, et vos cheveux.
-    </p>
-    <!-- mini constellation décorative -->
-    <div class="mt-12 flex items-center justify-center gap-3" aria-hidden="true">
-      <span class="h-px w-10" style="background:var(--line)"></span>
-      <span class="twinkle text-sm" style="color:var(--accent)">&#10022;</span>
-      <span class="h-px w-16" style="background:var(--line)"></span>
-      <span class="twinkle text-xs" style="color:var(--accent);animation-delay:.8s">&#10022;</span>
-      <span class="h-px w-10" style="background:var(--line)"></span>
+    <div data-reveal>
+      <iframe
+        src="https://maps.google.com/maps?q=42.554994,8.7624226&z=15&output=embed"
+        title="Localisation de Stellu Coiff à Calvi"
+        class="w-full h-[360px] sm:h-[480px]"
+        style="border:1px solid var(--line); border-radius:4px;"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>
 
-<!-- ============ 3. LA CONSTELLATION DES PRESTATIONS ============ -->
-<section id="prestations" class="relative py-24 sm:py-32 px-5 overflow-hidden nightfield" style="background:var(--ink)">
-  <div id="sky2" class="absolute inset-0" aria-hidden="true"></div>
-  <div class="relative z-10 max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent-lt)">&#10022; Nos prestations</p>
-      <h2 data-reveal class="font-display glow text-bg leading-tight" style="font-size:clamp(1.9rem,5vw,3.2rem)">Une constellation de savoir-faire</h2>
-      <p data-reveal class="mt-5 max-w-xl mx-auto font-light" style="color:#a9aab6">Chaque prestation est une étoile. Les plus brillantes sont nos spécialités : lissages et kératine, un savoir-faire rare en Balagne.</p>
-    </div>
-
-    <!-- ===== Carte constellation (desktop) ===== -->
-    <div id="constellation" class="relative hidden md:block mx-auto" style="max-width:900px;aspect-ratio:16/10">
-      <!-- liens SVG -->
-      <svg class="absolute inset-0 w-full h-full" viewBox="0 0 900 562" preserveAspectRatio="none" aria-hidden="true">
-        <g fill="none" stroke="#B08A4F" stroke-width="1" stroke-opacity=".55">
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="180" y2="120"/>
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="720" y2="120"/>
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="120" y2="300"/>
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="780" y2="300"/>
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="220" y2="470"/>
-          <line class="clink" pathLength="1" x1="450" y1="281" x2="680" y2="470"/>
-          <line class="clink" pathLength="1" x1="180" y1="120" x2="450" y2="60"/>
-          <line class="clink" pathLength="1" x1="720" y1="120" x2="450" y2="60"/>
-          <line class="clink" pathLength="1" x1="120" y1="300" x2="220" y2="470"/>
-          <line class="clink" pathLength="1" x1="780" y1="300" x2="680" y2="470"/>
-        </g>
-      </svg>
-
-      <!-- étoile centrale = le salon -->
-      <div class="absolute -translate-x-1/2 -translate-y-1/2 text-center" style="left:50%;top:50%">
-        <span class="twinkle block text-2xl" style="color:var(--accent-lt)">&#10022;</span>
-        <span class="font-display tracking-star text-bg text-sm mt-1 block glow">STELLU</span>
+<!-- FOOTER -->
+<footer style="background:var(--ink); color:#C7D3D0; border-top:2px solid var(--gold);">
+  <div class="max-w-6xl mx-auto px-5 sm:px-7 py-14">
+    <div class="grid sm:grid-cols-3 gap-10">
+      <div>
+        <p class="font-display text-3xl" style="color:#fff; font-weight:600;"><span style="color:var(--gold);">✦</span> Stellu Coiff</p>
+        <p class="mt-3 text-[.95rem] leading-[1.6]">Salon de coiffure &amp; bien-être au cœur de Calvi.</p>
+        <p class="mt-3 text-[.9rem]" style="color:#D8B873;">★ ★ ★ ★ ★ &nbsp;4,7 sur Google · 14 avis</p>
       </div>
-
-      <!-- noeuds : positions left/top en % -->
-      <!-- big = spécialités -->
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:20%;top:21.3%" data-cap data-img="couleur" data-title="Couleur &amp; balayage" data-desc="La nuance qui vous ressemble, des reflets sur-mesure.">
-        <span class="star-dot block rounded-full mx-auto" style="width:13px;height:13px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.62rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Couleur · balayage</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:80%;top:21.3%" data-cap data-img="couleur" data-title="Tie &amp; dye" data-desc="Un dégradé lumineux, du naturel à l'éclat.">
-        <span class="star-dot block rounded-full mx-auto" style="width:11px;height:11px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.62rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Tie &amp; dye</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:13.3%;top:53.4%" data-cap data-img="soin" data-title="Lissage brésilien" data-desc="Cheveux disciplinés, brillants, faciles au quotidien.">
-        <span class="star-dot block rounded-full mx-auto" style="width:18px;height:18px;background:var(--accent-lt);box-shadow:0 0 22px 2px rgba(232,201,138,.5)"></span>
-        <span class="font-mono text-[.66rem] tracking-mono uppercase mt-2 block font-bold" style="color:var(--accent-lt)">Lissage brésilien</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:86.6%;top:53.4%" data-cap data-img="soin" data-title="Lissage japonais" data-desc="Une tenue durable, un fini lisse et soyeux.">
-        <span class="star-dot block rounded-full mx-auto" style="width:18px;height:18px;background:var(--accent-lt);box-shadow:0 0 22px 2px rgba(232,201,138,.5)"></span>
-        <span class="font-mono text-[.66rem] tracking-mono uppercase mt-2 block font-bold" style="color:var(--accent-lt)">Lissage japonais</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:24.4%;top:83.6%" data-cap data-img="soin" data-title="Kératine" data-desc="Le soin réparateur qui redonne force et brillance.">
-        <span class="star-dot block rounded-full mx-auto" style="width:16px;height:16px;background:var(--accent-lt);box-shadow:0 0 18px 1px rgba(232,201,138,.4)"></span>
-        <span class="font-mono text-[.66rem] tracking-mono uppercase mt-2 block font-bold" style="color:var(--accent-lt)">Kératine</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:75.6%;top:83.6%" data-cap data-img="coupe" data-title="Coupe femme" data-desc="Une coupe pensée pour votre matière et votre style.">
-        <span class="star-dot block rounded-full mx-auto" style="width:12px;height:12px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.62rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Coupe femme</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:50%;top:10.7%" data-cap data-img="coupe" data-title="Coupe homme" data-desc="Net, précis, entretenu. Le salon est mixte.">
-        <span class="star-dot block rounded-full mx-auto" style="width:11px;height:11px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.62rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Coupe homme</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:13.3%;top:83.6%" data-cap data-img="brushing" data-title="Coupe enfant" data-desc="En douceur, pour les plus petites étoiles.">
-        <span class="star-dot block rounded-full mx-auto" style="width:10px;height:10px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.6rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Coupe enfant</span>
-      </button>
-      <button class="star-node absolute -translate-x-1/2 -translate-y-1/2 text-center group" style="left:86.6%;top:83.6%" data-cap data-img="brushing" data-title="Permanente" data-desc="Du volume et du mouvement qui durent.">
-        <span class="star-dot block rounded-full mx-auto" style="width:10px;height:10px;background:var(--accent-lt)"></span>
-        <span class="font-mono text-[.6rem] tracking-mono uppercase mt-2 block" style="color:#cfd0d8">Permanente</span>
-      </button>
-    </div>
-
-    <!-- panneau révélé au survol (desktop) -->
-    <div id="cap-panel" class="hidden md:flex items-center justify-center gap-5 mt-12 min-h-[88px] opacity-0 transition-opacity duration-300">
-      <div class="w-16 h-16 rounded-full overflow-hidden halo-dark shrink-0">
-        <img id="cap-img" src="./assets/images/couleur.avif" alt="" class="w-full h-full object-cover"/>
+      <div>
+        <p class="eyebrow mb-3" style="color:#D8B873;">Coordonnées</p>
+        <p class="text-[.95rem] leading-[1.7]">Chez Nuance, Centre commercial Auchan<br/>Route de Santore, Bâtiment C<br/>20260 Calvi</p>
+        <p class="mt-3 text-[1rem]"><a href="tel:+33673539992" style="color:#fff;">06 73 53 99 92</a></p>
       </div>
-      <div class="text-left max-w-md">
-        <h3 id="cap-title" class="font-display text-bg text-xl">Couleur &amp; balayage</h3>
-        <p id="cap-desc" class="font-light text-sm mt-1" style="color:#a9aab6">La nuance qui vous ressemble, des reflets sur-mesure.</p>
-      </div>
-    </div>
-
-    <!-- ===== Liste verticale (mobile) ===== -->
-    <ul class="md:hidden space-y-3 max-w-md mx-auto">
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-lg shrink-0" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Couleur &amp; balayage</p><p class="text-xs font-light" style="color:#a9aab6">Reflets sur-mesure, la nuance qui vous ressemble.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(176,138,79,.1);border:1px solid rgba(232,201,138,.4)">
-        <span class="text-xl shrink-0 glow" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Lissage brésilien</p><p class="text-xs font-light" style="color:#cdc3a8">Notre spécialité. Cheveux disciplinés et brillants.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(176,138,79,.1);border:1px solid rgba(232,201,138,.4)">
-        <span class="text-xl shrink-0 glow" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Lissage japonais</p><p class="text-xs font-light" style="color:#cdc3a8">Une tenue durable, un fini lisse et soyeux.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(176,138,79,.1);border:1px solid rgba(232,201,138,.4)">
-        <span class="text-xl shrink-0 glow" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Kératine</p><p class="text-xs font-light" style="color:#cdc3a8">Le soin réparateur qui redonne force et brillance.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-lg shrink-0" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Tie &amp; dye</p><p class="text-xs font-light" style="color:#a9aab6">Un dégradé lumineux, du naturel à l'éclat.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-lg shrink-0" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Coupe femme · homme · enfant</p><p class="text-xs font-light" style="color:#a9aab6">Salon mixte. Une coupe pour chacun.</p></div>
-      </li>
-      <li data-reveal data-star class="flex items-center gap-4 rounded-2xl p-4" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-lg shrink-0" style="color:var(--accent-lt)">&#10022;</span>
-        <div><p class="font-display text-bg text-lg leading-tight">Permanente</p><p class="text-xs font-light" style="color:#a9aab6">Du volume et du mouvement qui durent.</p></div>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ 4. GALERIE MATIÈRE : SOUS LA LUMIÈRE ============ -->
-<section class="relative py-24 sm:py-32 px-5" style="background:var(--bg)">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent)">&#10022; La matière</p>
-      <h2 data-reveal class="font-display leading-tight" style="font-size:clamp(1.9rem,5vw,3rem)">Sous la lumière</h2>
-    </div>
-
-    <!-- médaillons ronds asymétriques -->
-    <div class="grid grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-      <figure data-reveal class="lg:col-span-4 flex flex-col items-center">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[260px] bg-white">
-          <img src="./assets/images/femme-cheveux.avif" alt="Éclat et matière du cheveu sous la lumière" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 01 / Éclat</figcaption>
-      </figure>
-
-      <figure data-reveal class="lg:col-span-5 flex flex-col items-center lg:-mt-10">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[320px] bg-white">
-          <img src="./assets/images/couleur.avif" alt="Coloration et reflets lumineux" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 02 / Couleur</figcaption>
-      </figure>
-
-      <figure data-reveal class="lg:col-span-3 flex flex-col items-center lg:mt-12">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[220px] bg-white">
-          <img src="./assets/images/ciseaux.avif" alt="Ciseaux, le geste expert" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 03 / Geste</figcaption>
-      </figure>
-
-      <figure data-reveal class="lg:col-span-3 flex flex-col items-center lg:mt-6">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[220px] bg-white">
-          <img src="./assets/images/brushing.avif" alt="Brushing lumineux, cheveux en mouvement" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 04 / Brushing</figcaption>
-      </figure>
-
-      <figure data-reveal class="lg:col-span-5 flex flex-col items-center lg:-mt-8">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[320px] bg-white">
-          <img src="./assets/images/soin.avif" alt="Soin profond et brillance du cheveu" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 05 / Soin</figcaption>
-      </figure>
-
-      <figure data-reveal class="lg:col-span-4 flex flex-col items-center lg:mt-10">
-        <div class="halo rounded-full overflow-hidden aspect-square w-full max-w-[260px] bg-white">
-          <img src="./assets/images/coupe.avif" alt="Coupe et balayage sur-mesure" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-        <figcaption class="font-mono text-[.6rem] tracking-mono uppercase mt-3" style="color:var(--ink-2)">&#10022; 06 / Coupe</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 5. LE RITUEL : EXPÉRIENCE SALON ============ -->
-<section class="relative py-24 sm:py-32 px-5" style="background:var(--bg)">
-  <div class="max-w-6xl mx-auto">
-    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      <div class="lg:col-span-5">
-        <div data-reveal class="halo rounded-[2rem] overflow-hidden aspect-[4/5] bg-white">
-          <img src="./assets/images/salon-interieur.avif" alt="Ambiance zen et lumineuse du salon" loading="lazy" class="w-full h-full object-cover"/>
-        </div>
-      </div>
-      <div class="lg:col-span-7">
-        <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent)">&#10022; Le rituel</p>
-        <h2 data-reveal class="font-display leading-tight" style="font-size:clamp(1.8rem,4.5vw,2.8rem)">Un parcours pensé pour vous</h2>
-        <p data-reveal class="mt-5 text-lg font-light" style="color:var(--ink-2)">
-          Chaque tête est unique. On commence toujours par un diagnostic-conseil pour vous proposer le geste juste, sans surprise.
-        </p>
-
-        <!-- mini-constellation horizontale : 4 étapes -->
-        <ol class="mt-10 grid sm:grid-cols-2 gap-x-8 gap-y-7 relative">
-          <li data-reveal class="flex gap-4">
-            <span class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm" style="border:1px solid var(--accent);color:var(--accent)" aria-hidden="true">&#10022;</span>
-            <div>
-              <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">01 / Diagnostic</p>
-              <p class="font-display text-lg leading-tight mt-1">On vous écoute</p>
-              <p class="text-sm font-light mt-1" style="color:var(--ink-2)">Vos envies, votre matière, votre rythme de vie.</p>
-            </div>
-          </li>
-          <li data-reveal class="flex gap-4">
-            <span class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm" style="border:1px solid var(--accent);color:var(--accent)" aria-hidden="true">&#10022;</span>
-            <div>
-              <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">02 / Couleur</p>
-              <p class="font-display text-lg leading-tight mt-1">La nuance juste</p>
-              <p class="text-sm font-light mt-1" style="color:var(--ink-2)">Balayage, coloration, reflets pensés pour vous.</p>
-            </div>
-          </li>
-          <li data-reveal class="flex gap-4">
-            <span class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm" style="border:1px solid var(--accent);color:var(--accent)" aria-hidden="true">&#10022;</span>
-            <div>
-              <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">03 / Coupe</p>
-              <p class="font-display text-lg leading-tight mt-1">Le geste expert</p>
-              <p class="text-sm font-light mt-1" style="color:var(--ink-2)">Une coupe qui tient et qui vous ressemble.</p>
-            </div>
-          </li>
-          <li data-reveal class="flex gap-4">
-            <span class="shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-sm" style="border:1px solid var(--accent);color:var(--accent)" aria-hidden="true">&#10022;</span>
-            <div>
-              <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">04 / Soin</p>
-              <p class="font-display text-lg leading-tight mt-1">Le soin qui fait du bien</p>
-              <p class="text-sm font-light mt-1" style="color:var(--ink-2)">Brillance, force, et un vrai moment pour soi.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 6. DIPTYQUE BIEN-ÊTRE ============ -->
-<section class="relative py-24 sm:py-28 px-5" style="background:var(--bg)">
-  <div class="max-w-5xl mx-auto">
-    <div data-reveal class="rounded-[2rem] p-10 sm:p-14 text-center" style="background:var(--ink);box-shadow:0 30px 70px -34px rgba(26,30,46,.6)">
-      <p class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent-lt)">&#10022; Au-delà du cheveu</p>
-      <h2 class="font-display glow text-bg leading-tight" style="font-size:clamp(1.7rem,4.5vw,2.6rem)">Deux astres pour prendre soin de vous, entièrement</h2>
-      <div class="mt-10 grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
-        <div class="flex flex-col items-center">
-          <span class="twinkle text-2xl mb-3" style="color:var(--accent-lt)">&#10022;</span>
-          <h3 class="font-display text-bg text-xl">Réflexologie</h3>
-          <p class="text-sm font-light mt-2" style="color:#a9aab6">Un moment de détente profonde, pour relâcher les tensions.</p>
-        </div>
-        <div class="flex flex-col items-center">
-          <span class="twinkle text-2xl mb-3" style="color:var(--accent-lt);animation-delay:1s">&#10022;</span>
-          <h3 class="font-display text-bg text-xl">Soins mains &amp; pieds</h3>
-          <p class="text-sm font-light mt-2" style="color:#a9aab6">Des mains et des pieds soignés, jusqu'au bout des ongles.</p>
+      <div>
+        <p class="eyebrow mb-3" style="color:#D8B873;">Horaires</p>
+        <p class="text-[.95rem] leading-[1.7]">Lundi à Samedi : 9h00 – 19h00<br/>Dimanche : fermé</p>
+        <div class="flex gap-4 mt-4">
+          <a href="https://www.instagram.com/stellucoiff/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[.9rem]" style="color:#fff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/stellucoiff/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[.9rem]" style="color:#fff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            Facebook
+          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ 7. L'ÉQUIPE : QUATRE ÉTOILES ============ -->
-<section class="relative py-24 sm:py-32 px-5" style="background:var(--bg)">
-  <div class="max-w-5xl mx-auto text-center">
-    <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent)">&#10022; L'équipe</p>
-    <h2 data-reveal class="font-display leading-tight" style="font-size:clamp(1.8rem,4.5vw,2.8rem)">Quatre étoiles fixes</h2>
-    <p data-reveal class="mt-5 max-w-xl mx-auto font-light" style="color:var(--ink-2)">Une équipe stable et complice qui vous accueille toute l'année.</p>
-
-    <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-6">
-      <div data-reveal class="flex flex-col items-center">
-        <span class="w-20 h-20 rounded-full flex items-center justify-center font-display text-2xl halo" style="background:#fff;color:var(--accent)">E</span>
-        <p class="font-display text-lg mt-4">Estelle</p>
-        <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">Coiffure</p>
-      </div>
-      <div data-reveal class="flex flex-col items-center">
-        <span class="w-20 h-20 rounded-full flex items-center justify-center font-display text-2xl halo" style="background:#fff;color:var(--accent)">A</span>
-        <p class="font-display text-lg mt-4">Anthony</p>
-        <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">Coiffure</p>
-      </div>
-      <div data-reveal class="flex flex-col items-center">
-        <span class="w-20 h-20 rounded-full flex items-center justify-center font-display text-2xl halo" style="background:#fff;color:var(--accent)">C</span>
-        <p class="font-display text-lg mt-4">Céline</p>
-        <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">Coiffure</p>
-      </div>
-      <div data-reveal class="flex flex-col items-center">
-        <span class="w-20 h-20 rounded-full flex items-center justify-center font-display text-2xl halo" style="background:#fff;color:var(--accent)">M</span>
-        <p class="font-display text-lg mt-4">Marion</p>
-        <p class="font-mono text-[.6rem] tracking-mono uppercase" style="color:var(--ink-2)">Coiffure</p>
-      </div>
+    <div class="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3" style="border-top:1px solid rgba(255,255,255,.1);">
+      <p class="text-[.82rem]" style="color:#8FA39E;">© <span id="year">2026</span> Stellu Coiff · Calvi. Tous droits réservés.</p>
+      <p class="text-[.7rem]" style="color:#6E827D;">Site réalisé avec soin par SpeedPost.fr</p>
     </div>
-  </div>
-</section>
-
-<!-- ============ 8. AVIS : LA PLUIE D'ÉTOILES ============ -->
-<section class="relative py-24 sm:py-32 px-5 overflow-hidden nightfield" style="background:var(--ink)">
-  <div id="sky3" class="absolute inset-0" aria-hidden="true"></div>
-  <div class="relative z-10 max-w-5xl mx-auto">
-    <div class="text-center mb-14">
-      <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent-lt)">&#10022; Vos avis</p>
-      <p data-reveal class="font-display glow leading-none" style="font-size:clamp(3rem,11vw,6rem);color:var(--accent-lt)">4,7<span class="text-bg" style="font-size:.4em"> / 5</span></p>
-      <p data-reveal class="text-lg mt-2" style="color:var(--accent-lt)" aria-label="cinq étoiles">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
-      <p data-reveal class="font-mono text-xs tracking-mono uppercase mt-3" style="color:#a9aab6">14 avis Google</p>
-    </div>
-
-    <div class="grid sm:grid-cols-3 gap-6">
-      <blockquote data-reveal class="rounded-2xl p-6" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-sm" style="color:var(--accent-lt)">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-        <p class="font-accent text-xl mt-3 text-bg">"Accueil chaleureux et résultat parfait."</p>
-        <p class="font-light text-sm mt-3" style="color:#a9aab6">Une équipe à l'écoute, on ressort le sourire aux lèvres.</p>
-      </blockquote>
-      <blockquote data-reveal class="rounded-2xl p-6" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-sm" style="color:var(--accent-lt)">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-        <p class="font-accent text-xl mt-3 text-bg">"Une vraie expertise couleur."</p>
-        <p class="font-light text-sm mt-3" style="color:#a9aab6">Mon balayage est lumineux et naturel, exactement ce que je voulais.</p>
-      </blockquote>
-      <blockquote data-reveal class="rounded-2xl p-6" style="background:rgba(246,244,240,.04);border:1px solid rgba(176,138,79,.22)">
-        <span class="text-sm" style="color:var(--accent-lt)">&#9733; &#9733; &#9733; &#9733; &#9733;</span>
-        <p class="font-accent text-xl mt-3 text-bg">"Un vrai moment de détente."</p>
-        <p class="font-light text-sm mt-3" style="color:#a9aab6">Atmosphère zen, on se sent chouchouté du début à la fin.</p>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 9. CONSTELLATION PRATIQUE : INFOS + MAP ============ -->
-<section id="infos" class="relative py-24 sm:py-32 px-5" style="background:var(--bg)">
-  <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-14">
-      <p data-reveal class="font-mono text-xs tracking-mono uppercase mb-5" style="color:var(--accent)">&#10022; Nous trouver</p>
-      <h2 data-reveal class="font-display leading-tight" style="font-size:clamp(1.9rem,5vw,3rem)">Votre étoile à Calvi</h2>
-    </div>
-
-    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-      <!-- infos -->
-      <div class="order-2 lg:order-1">
-        <div data-reveal class="space-y-8">
-          <div>
-            <p class="font-mono text-[.62rem] tracking-mono uppercase mb-2" style="color:var(--accent)">&#10022; Adresse</p>
-            <p class="font-display text-xl leading-snug">Galerie commerciale Auchan, espace Nuance</p>
-            <p class="font-light" style="color:var(--ink-2)">20260 Calvi, Balagne (Haute-Corse)</p>
-          </div>
-          <div>
-            <p class="font-mono text-[.62rem] tracking-mono uppercase mb-2" style="color:var(--accent)">&#10022; Horaires</p>
-            <p class="font-light"><span class="font-display text-ink">Lundi à samedi</span> : 9h à 19h</p>
-            <p class="font-light" style="color:var(--ink-2)">Dimanche : fermé</p>
-          </div>
-          <div>
-            <p class="font-mono text-[.62rem] tracking-mono uppercase mb-3" style="color:var(--accent)">&#10022; Réserver votre étoile</p>
-            <a href="tel:+33673539992" class="font-display block leading-none hover:opacity-80 transition" style="font-size:clamp(2rem,7vw,3rem);color:var(--accent)">06 73 53 99 92</a>
-          </div>
-          <div class="flex flex-wrap gap-3 pt-2">
-            <a href="tel:+33673539992" class="btn-accent inline-flex items-center gap-2 rounded-full px-7 py-4 font-mono text-xs tracking-mono uppercase">
-              <span aria-hidden="true">&#10022;</span> Appeler maintenant
-            </a>
-            <a href="https://www.instagram.com/stellucoiff/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full px-7 py-4 font-mono text-xs tracking-mono uppercase" style="border:1px solid var(--accent);color:var(--accent)">
-              @stellucoiff
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- map en médaillon -->
-      <div class="order-1 lg:order-2">
-        <div data-reveal class="halo rounded-[2rem] overflow-hidden aspect-square bg-white">
-          <iframe
-            title="Carte : Stellu Coiff, Calvi"
-            src="https://maps.google.com/maps?q=42.554994,8.7624226&z=15&output=embed"
-            loading="lazy"
-            style="border:0;width:100%;height:100%"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<!-- ============ FOOTER : CIEL DE CLÔTURE ============ -->
-<footer class="relative pt-24 pb-32 sm:pb-24 px-5 overflow-hidden nightfield" style="background:var(--ink)">
-  <div id="sky4" class="absolute inset-0" aria-hidden="true"></div>
-  <div class="relative z-10 max-w-5xl mx-auto text-center">
-    <span class="twinkle inline-block text-xl mb-6" style="color:var(--accent-lt)">&#10022;</span>
-    <p class="font-display glow tracking-star text-accent-lt leading-none" style="font-size:clamp(2.6rem,12vw,6rem)">STELLU</p>
-    <p class="font-mono text-[.62rem] tracking-mono uppercase mt-4" style="color:#a9aab6">Salon de coiffure &amp; bien-être · Calvi, Balagne</p>
-
-    <div class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-light text-sm" style="color:#cfd0d8">
-      <a href="tel:+33673539992" class="hover:text-accent-lt transition">06 73 53 99 92</a>
-      <span aria-hidden="true" style="color:var(--accent)">&#10022;</span>
-      <span>Galerie Auchan, espace Nuance, 20260 Calvi</span>
-      <span aria-hidden="true" style="color:var(--accent)">&#10022;</span>
-      <a href="https://www.instagram.com/stellucoiff/" target="_blank" rel="noopener" class="hover:text-accent-lt transition">@stellucoiff</a>
-    </div>
-
-    <p class="font-mono text-[.58rem] tracking-mono uppercase mt-12" style="color:#5b5c68">Site réalisé avec soin par SpeedPost.fr</p>
   </div>
 </footer>
 
-<!-- ============ DOCK CONVERSION MOBILE ============ -->
-<div id="dock" class="sm:hidden fixed bottom-0 inset-x-0 z-50 p-3" style="background:linear-gradient(transparent, rgba(26,30,46,.06) 30%, var(--bg) 70%)">
-  <a href="tel:+33673539992" class="btn-accent flex items-center justify-center gap-2 rounded-full w-full py-4 font-mono text-xs tracking-mono uppercase">
-    <span aria-hidden="true">&#10022;</span> Appeler : 06 73 53 99 92
-  </a>
-</div>
+<!-- DOCK MOBILE -->
+<a href="tel:+33673539992" class="dock md:hidden fixed bottom-0 inset-x-0 z-40 flex items-center justify-center gap-2 py-3.5" style="background:var(--accent); color:#fff; font-weight:500; letter-spacing:.04em;">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+  Prendre rendez-vous · 06 73 53 99 92
+</a>
+<div class="md:hidden" style="height:54px;" aria-hidden="true"></div>
+
+<!-- SENTINELLE pour la nav -->
+<div id="hero-sentinel" style="position:absolute; top:80vh; height:1px; width:1px;" aria-hidden="true"></div>
 
 <script type="module">
-import { animate, inView, stagger } from 'https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm';
+  document.documentElement.classList.add('js-ready');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.documentElement.classList.add('js-ready');
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Horaires : jour courant + état ouvert/fermé (L-S 9h-19h, dimanche fermé)
+  (function(){
+    const now = new Date();
+    const day = now.getDay();
+    document.querySelectorAll('.hrow').forEach(r => { if(parseInt(r.dataset.day,10) === day) r.classList.add('today'); });
+    const open = day !== 0 && now.getHours() >= 9 && now.getHours() < 19;
+    const badge = document.getElementById('open-badge');
+    const txt = document.getElementById('open-text');
+    if(open){ badge.classList.remove('is-closed'); badge.classList.add('is-open'); txt.textContent = 'Ouvert'; }
+    else { txt.textContent = 'Fermé'; }
+  })();
 
-/* ---- ciels étoilés générés (statiques, twinkle CSS) ---- */
-function seedSky(el, count){
-  if(!el) return;
-  const frag = document.createDocumentFragment();
-  for(let i=0;i<count;i++){
-    const s = document.createElement('span');
-    const size = Math.random()*2 + 1;
-    s.style.cssText = `position:absolute;border-radius:50%;background:${Math.random()>.7?'#E8C98A':'#cfd0d8'};`+
-      `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;`+
-      `opacity:${(Math.random()*0.5+0.3).toFixed(2)};`;
-    if(!reduce){
-      s.classList.add('twinkle');
-      s.style.animationDelay = (Math.random()*3).toFixed(2)+'s';
-      s.style.animationDuration = (Math.random()*2+2.5).toFixed(2)+'s';
-    }
-    frag.appendChild(s);
+  // Nav solide après le hero (IntersectionObserver, pas de scroll continu)
+  (function(){
+    const nav = document.getElementById('nav');
+    const sentinel = document.getElementById('hero-sentinel');
+    if(!('IntersectionObserver' in window)){ nav.classList.add('nav-solid'); return; }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => {
+        if(e.isIntersecting) nav.classList.remove('nav-solid');
+        else nav.classList.add('nav-solid');
+      });
+    }, { rootMargin:'-64px 0px 0px 0px' });
+    io.observe(sentinel);
+  })();
+
+  // Reveals + hero (Motion One, amélioration progressive)
+  if(!reduce){
+    import('https://cdn.jsdelivr.net/npm/motion@10.18.0/+esm').then(({ animate, inView })=>{
+      const heroImg = document.getElementById('hero-image');
+      if(heroImg) animate(heroImg, { transform:['scale(1.06)','scale(1)'] }, { duration:1.2, easing:[0.2,0.7,0.2,1] });
+
+      document.querySelectorAll('[data-reveal]').forEach(el => el.style.animation='none');
+      inView('[data-reveal]', (info)=>{
+        animate(info.target, { opacity:[0,1], transform:['translateY(16px)','translateY(0)'] },
+          { duration:0.5, easing:[0.2,0.7,0.2,1] });
+        return () => {};
+      }, { amount:0.15 });
+    }).catch(()=>{});
   }
-  el.appendChild(frag);
-}
-seedSky(document.getElementById('sky'), 70);
-seedSky(document.getElementById('sky2'), 50);
-seedSky(document.getElementById('sky3'), 50);
-seedSky(document.getElementById('sky4'), 35);
-
-/* ---- reveals one-shot ---- */
-inView('[data-reveal]', (el) => {
-  if(reduce) return;
-  animate(el, { opacity:[0,1], transform:['translateY(16px)','translateY(0)'] },
-    { duration:0.5, easing:[0.2,0.7,0.2,1] });
-}, { amount: 0.15 });
-
-/* ---- constellation : allumage étoiles + tracé liens (one-shot via inView) ---- */
-const constellation = document.getElementById('constellation');
-if(constellation){
-  inView(constellation, () => {
-    if(!reduce){
-      const nodes = constellation.querySelectorAll('.star-node');
-      animate(nodes, { opacity:[0,1], scale:[0,1] },
-        { duration:0.5, delay: stagger(0.09), easing:[0.34,1.56,0.64,1] });
-    }
-    // tracé des liens via classe CSS one-shot
-    setTimeout(() => constellation.classList.add('lit'), reduce ? 0 : 500);
-  }, { amount: 0.3 });
-}
-
-/* ---- panneau prestation au survol/focus (desktop) ---- */
-const panel = document.getElementById('cap-panel');
-const capImg = document.getElementById('cap-img');
-const capTitle = document.getElementById('cap-title');
-const capDesc = document.getElementById('cap-desc');
-document.querySelectorAll('[data-cap]').forEach((node) => {
-  const show = () => {
-    if(!panel) return;
-    capImg.src = `./assets/images/${node.dataset.img}.avif`;
-    capImg.alt = node.dataset.title;
-    capTitle.textContent = node.dataset.title;
-    capDesc.textContent = node.dataset.desc;
-    panel.style.opacity = '1';
-  };
-  node.addEventListener('mouseenter', show);
-  node.addEventListener('focus', show);
-});
-
-/* ---- mobile : étoiles liste s'illuminent au scroll (one-shot) ---- */
-inView('[data-star]', (el) => {
-  if(reduce) return;
-  animate(el.querySelector('span'), { opacity:[0.4,1], scale:[0.85,1] },
-    { duration:0.45, easing:[0.34,1.56,0.64,1] });
-}, { amount: 0.5 });
-
-/* ---- dock : masqué quand la section infos est visible (CTA déjà présent) ---- */
-const dock = document.getElementById('dock');
-const infos = document.getElementById('infos');
-if(dock && infos && 'IntersectionObserver' in window){
-  new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      dock.style.transform = e.isIntersecting ? 'translateY(140%)' : 'translateY(0)';
-    });
-  }, { threshold: 0.2 }).observe(infos);
-}
-
-/* ---- curseur étoile (desktop, lerp, pas scroll-linked) ---- */
-const cursor = document.getElementById('star-cursor');
-const fine = window.matchMedia('(pointer:fine)').matches;
-if(cursor && fine && !reduce){
-  let tx=0, ty=0, cx=0, cy=0, active=false;
-  window.addEventListener('mousemove', (e) => {
-    tx = e.clientX - 7; ty = e.clientY - 7;
-    if(!active){ active=true; cursor.style.opacity='.9'; }
-  });
-  const loop = () => {
-    cx += (tx - cx) * 0.18;
-    cy += (ty - cy) * 0.18;
-    cursor.style.transform = `translate(${cx}px, ${cy}px)`;
-    requestAnimationFrame(loop);
-  };
-  requestAnimationFrame(loop);
-}
 </script>
 </body>
 </html>
